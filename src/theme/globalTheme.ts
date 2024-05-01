@@ -132,11 +132,10 @@ export const globalTheme = {
     },
   },
   stroke: {
-    0: '#D9DBE9'
+    0: '#D9DBE9',
   },
   backgroundImage: {
     'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-    'gradient-conic':
-      'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+    'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
   },
 } as const;
