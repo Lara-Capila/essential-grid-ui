@@ -3,25 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --color: #0a0a0a;
+  --scrollbar-bg: #d6d6d6;
+  --secondary: #f1f1f1;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--color));
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f1f1f1;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #dfdfdf;
+}
+
+@layer components {
+  .input-base-style {
+    @apply w-full rounded-md border 
+      stroke-0 px-3 py-2 text-sm text-neutral-0 
+      outline-none focus:shadow-sm 
+      focus:shadow-primary-80 focus:ring-1 focus:ring-primary-80
+      data-[error=true]:border-error-80 data-[error=true]:text-error-60 
+      data-[error=true]:placeholder-error-80 data-[error=true]:focus:shadow-none 
+      data-[error=true]:focus:ring-1 data-[error=true]:focus:ring-error-80;
+  }
+
+  .input-icon-container {
+    @apply absolute inset-y-0 right-3 flex items-center text-neutral-60 data-[error=true]:text-error-60;
+  }
+
+  .select-country {
+    @apply w-max rounded-md border 
+      stroke-0 p-2 text-sm text-neutral-0 
+      outline-none focus:shadow-sm 
+      focus:shadow-primary-80 focus:ring-1 focus:ring-primary-80;
+  }
 }

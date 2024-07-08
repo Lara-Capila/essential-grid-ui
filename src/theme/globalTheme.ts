@@ -13,11 +13,8 @@ export const globalTheme = {
     button: '1.6rem',
     'badge-label': '1.2rem',
   },
-  lineHeight: {
-    normal: '1.2rem',
-    relaxed: '1.6rem',
-  },
   colors: {
+    input: '#EFF0F6',
     primary: {
       0: '#031226',
       10: '#07244B',

@@ -1,3 +1,4 @@
+import { addDynamicIconSelectors } from '@iconify/tailwind';
 import type { Config } from 'tailwindcss';
 import { globalTheme } from './src/theme/globalTheme';
 
@@ -8,8 +9,19 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    lineHeight: {
+      normal: '1.2rem',
+      relaxed: '1.6rem',
+    },
+    fontFamily: {
+      sans: ['Inconsolata', 'sans-serif'],
+    },
     extend: globalTheme,
   },
-  plugins: [],
+  plugins: [
+    addDynamicIconSelectors({
+      overrideOnly: true,
+    }),
+  ],
 };
 export default config;
