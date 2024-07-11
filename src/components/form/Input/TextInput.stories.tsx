@@ -12,6 +12,7 @@ type TextInputProps = {
   iconName?: InputIconProps['iconName'];
   hintText?: InputHintTextProps['children'];
   color?: InputIconProps['color'];
+  multiline?: boolean;
 };
 
 export default {
@@ -33,6 +34,14 @@ export default {
       description: 'The hint text to display below the input field.',
       type: { name: 'string' },
     },
+    multiline: {
+      control: 'boolean',
+      description: 'Indicates if the input should be multiline (textarea).',
+      type: { name: 'boolean' },
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
 } as Meta;
 
@@ -41,7 +50,7 @@ const Template: StoryFn<TextInputProps> = (args) => {
     <Input.Root>
       <Input.Container error={args.error}>
         {args.label && <Input.Label>{args.label}</Input.Label>}
-        <Input.Text id="text-input">
+        <Input.Text id="text-input" multiline={args.multiline}>
           {args.iconName && <Input.Icon color={args.color} iconName={args.iconName} />}
         </Input.Text>
         {(args.hintText || args.error) && (
@@ -87,4 +96,10 @@ export const WithError = Template.bind({});
 WithError.args = {
   error: { type: 'onChange', message: 'This is an error' },
   label: 'Teste',
+};
+
+export const Multiline = Template.bind({});
+Multiline.args = {
+  label: 'Teste',
+  multiline: true,
 };

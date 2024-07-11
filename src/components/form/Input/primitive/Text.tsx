@@ -33,7 +33,7 @@ export const InputText = ({
       <div className="relative">
         <textarea
           {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}
-          id="text-input"
+          id="textarea-input"
           placeholder={placeholder}
           data-error={!!error}
           className={joinClasses}
