@@ -25,7 +25,7 @@ const CountryItem = ({ country }: { country: Country }) => {
 
 export const SelectCountryCode = ({ selected, setSelected }: SelectCountryCodeProps) => {
   return (
-    <div className="flex flex-row items-center rounded-s-md border border-r-0">
+    <div className="flex w-min flex-row items-center rounded-s-md border border-r-0">
       <Listbox value={selected} onChange={setSelected}>
         <ListboxButton
           className="relative flex w-max items-center gap-2 rounded-s-md p-2 text-sm text-neutral-0
