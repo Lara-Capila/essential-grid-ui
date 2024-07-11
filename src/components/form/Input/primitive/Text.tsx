@@ -1,31 +1,58 @@
-import { InputHTMLAttributes, ReactNode, useContext } from 'react';
+import {
+  InputHTMLAttributes,
+  ReactNode,
+  TextareaHTMLAttributes,
+  useContext,
+} from 'react';
 import { twJoin } from 'tailwind-merge';
 import { InputRootContext } from './Root';
 
-type InputTextProps = {
+type BaseInputProps = {
   children?: ReactNode;
-} & InputHTMLAttributes<HTMLInputElement>;
+  multiline?: boolean;
+};
+
+type ConditionalInputProps<T> = T extends { multiline: true }
+  ? TextareaHTMLAttributes<HTMLTextAreaElement>
+  : InputHTMLAttributes<HTMLInputElement>;
+
+type InputProps<T> = BaseInputProps & ConditionalInputProps<T>;
 
 export const InputText = ({
-  placeholder = 'Digite',
   children,
+  multiline,
+  placeholder = 'Digite',
   ...rest
-}: InputTextProps) => {
+}: InputProps<{ multiline?: boolean }>) => {
   const { error } = useContext(InputRootContext);
 
   const joinClasses = twJoin('input-base-style', children && 'pr-9');
 
+  if (multiline) {
+    return (
+      <div className="relative">
+        <textarea
+          {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}
+          id="text-input"
+          placeholder={placeholder}
+          data-error={!!error}
+          className={joinClasses}
+          aria-multiline={true}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="relative">
       <input
-        {...rest}
+        {...(rest as InputHTMLAttributes<HTMLInputElement>)}
         id="text-input"
         type="text"
         placeholder={placeholder}
         data-error={!!error}
         className={joinClasses}
       />
-
       {children}
     </div>
   );
